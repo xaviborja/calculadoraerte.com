@@ -12,10 +12,10 @@ layout: default
 
   <section>
     {{ content }}
-    <form>
+    <form id="calculator">
       <div class="form-group">
         <label for="regulatory_base">Base reguladora del último mes</label>
-        <input type="text" id="regulatory_base" class="form-control" aria-describedby="regulatory_base" placeholder="Introduza el importe">
+        <input type="text" required id="regulatory_base" class="form-control" aria-describedby="regulatory_base" placeholder="Introduza el importe">
         <small id="regulatory_base_info" class="form-text text-muted">El cálculo real se hace con la media de los últimos seis meses.</small>
       </div>
       <div class="form-group">
@@ -26,12 +26,24 @@ layout: default
           <option>2+</option>
         </select>
       </div>
-      <div class="form-group">
-        <label for="duration">Duración del ERTE en días</label>
-        <input type="number" min="1" id="duration" class="form-control" aria-describedby="regulatory_base" placeholder="Introduza el número de días">
-      </div>
       <button type="submit" class="btn btn-primary">Calcular</button>
     </form>
+    <div class="result" id="result" style="display: none">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Importe primeros 6 meses</th>
+          <th scope="col">Importe siguientes meses</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><span id="result_first_six_months"></span></td>
+          <td><span id="result_following_months"></span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
 </div>
