@@ -12,30 +12,26 @@ layout: default
 
   <section>
     {{ content }}
+    <form>
+      <div class="form-group">
+        <label for="regulatory_base">Base reguladora del último mes</label>
+        <input type="text" id="regulatory_base" class="form-control" aria-describedby="regulatory_base" placeholder="Introduza el importe">
+        <small id="regulatory_base_info" class="form-text text-muted">El cálculo real se hace con la media de los últimos seis meses.</small>
+      </div>
+      <div class="form-group">
+        <label for="child_number">Número de hijos a cargo</label>
+        <select class="form-control" id="child_number">
+          <option>0</option>
+          <option>1</option>
+          <option>2+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="duration">Duración del ERTE en días</label>
+        <input type="number" min="1" id="duration" class="form-control" aria-describedby="regulatory_base" placeholder="Introduza el número de días">
+      </div>
+      <button type="submit" class="btn btn-primary">Calcular</button>
+    </form>
   </section>
-
-  {%- if site.posts.size > 0 -%}
-    <p class="h4">{{ page.list_title | default: "Posts" }}</p>
-    <ul class="list-unstyled">
-      {%- for post in site.posts -%}
-      <li>
-        <span class="text-muted">
-          {%- assign date_format = "%b %-d, %Y" -%}
-          {{ post.date | date: date_format }}
-        </span>
-        <p class="h5">
-          <a href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </p>
-        {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
-        {%- endif -%}
-      </li>
-      {%- endfor -%}
-    </ul>
-
-    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
-  {%- endif -%}
 
 </div>
