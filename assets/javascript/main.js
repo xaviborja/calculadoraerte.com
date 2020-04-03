@@ -14,6 +14,13 @@ $(function() {
             $('#result_first_six_months').html(baseFirstSixMonths + ' €');
             $('#result_following_months').html(baseNextMonths + ' €');
             $('#result').show();
+            return;
+        }
+        if (childNumber === 0 && baseFirstSixMonths > maximumWithNoChildren){
+            $('#result_first_six_months').html(maximumWithNoChildren + ' €');
+            $('#result_following_months').html(maximumWithNoChildren + ' €');
+            $('#result').show();
+            return;
         }
     });
 });
