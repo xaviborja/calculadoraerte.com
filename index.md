@@ -1,14 +1,10 @@
 ---
 layout: page
-title: Bootstrap 4 Github Pages
+title: Calcula tu sueldo con un ERTE aplicado
 ---
 
-A [Bootstrap 4](https://getbootstrap.com/) start up project for [Github Pages](https://pages.github.com/) and [Jekyll](https://jekyllrb.com/).
 
-* A full Bootstrap 4 theme usable both on Github Pages and with a standalone Jekyll.
-* Recompiles Bootstrap from SCSS files, which allows to customize Bootstrap's variables and use Bootstrap themes.
-* Full support of Bootstrap's JavaScript plugins.
-* Supports all features of Github Pages and Jekyll.
+¿Tu empresa está afectada por un ERTE del tipo que sea por culpa del Coronavirus? Averigua en cuánto se va a quedar tu sueldo fácilmente.
 
 ## Setup Guide
 
