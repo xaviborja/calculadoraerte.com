@@ -1,7 +1,48 @@
-function printResults(resultFirstSixMonths,resultNextMonths){
-    $('#result_first_six_months').html(resultFirstSixMonths.toFixed(2) + ' €');
-    $('#result_following_months').html(resultNextMonths.toFixed(2) + ' €');
-    $('#result').show();
+
+function printResult(id,value){
+    value = parseFloat(value);
+    $('#' + id).html(value.toFixed(2) + ' €');
+}
+
+function calc(childNumber,base,id){
+    const minimumWithNoChildren = 501.98;
+    const minimumWithOneOrMoreChildren = 671.40;
+    const maximumWithNoChildren = 1089.09;
+    const maximumWithOneChildren = 1254.96;
+    const maximumWithTwoOrMoreChildren = 1411.83;
+
+    const noChildrenAndBaseBetweenLimits = childNumber === 0 && (maximumWithNoChildren > base && base > minimumWithNoChildren);
+    const oneChildAndBaseBetweenLimits = childNumber === 1 && (maximumWithOneChildren > base && base > minimumWithOneOrMoreChildren);
+    const moreThanOneChildAndBaseBetweenLimits = childNumber > 1 && (maximumWithTwoOrMoreChildren > base && base > minimumWithOneOrMoreChildren);
+
+    if (noChildrenAndBaseBetweenLimits || oneChildAndBaseBetweenLimits || moreThanOneChildAndBaseBetweenLimits){
+        printResult(id,base);
+        return;
+    }
+
+    if (childNumber === 0 && base > maximumWithNoChildren){
+        printResult(id,maximumWithNoChildren);
+        return;
+    }
+    if (childNumber === 1 && base > maximumWithOneChildren){
+        printResult(id,maximumWithOneChildren);
+        return;
+    }
+
+    if (childNumber > 1 && base > maximumWithTwoOrMoreChildren){
+        printResult(id,maximumWithTwoOrMoreChildren);
+        return;
+    }
+
+    if (childNumber === 0 && base < minimumWithNoChildren){
+        printResult(id,minimumWithNoChildren);
+        return;
+    }
+
+    if (childNumber >= 1 && base < minimumWithOneOrMoreChildren){
+        printResult(id,minimumWithOneOrMoreChildren);
+        return;
+    }
 }
 
 $(function() {
@@ -10,47 +51,9 @@ $(function() {
         const regulatoryBase = $('#regulatory_base').val();
         const childNumber = parseInt($('#child_number').val());
 
-        const minimumWithNoChildren = 501.98;
-        const minimumWithOneOrMoreChildren = 671.40;
-        const maximumWithNoChildren = 1089.09;
-        const maximumWithOneChildren = 1254.96;
-        const maximumWithTwoOrMoreChildren = 1411.83;
-
-        const baseFirstSixMonths = regulatoryBase * 0.7;
-        const baseNextMonths = regulatoryBase * 0.5;
-
-        const noChildrenAndBaseBetweenLimits = childNumber === 0 && (maximumWithNoChildren > baseFirstSixMonths && baseFirstSixMonths > minimumWithNoChildren);
-        const oneChildAndBaseBetweenLimits = childNumber === 1 && (maximumWithOneChildren > baseFirstSixMonths && baseFirstSixMonths > minimumWithOneOrMoreChildren);
-        const moreThanOneChildAndBaseBetweenLimits = childNumber > 1 && (maximumWithTwoOrMoreChildren > baseFirstSixMonths && baseFirstSixMonths > minimumWithOneOrMoreChildren);
-
-        if (noChildrenAndBaseBetweenLimits || oneChildAndBaseBetweenLimits || moreThanOneChildAndBaseBetweenLimits){
-            printResults(baseFirstSixMonths,baseNextMonths);
-            return;
-        }
-
-        if (childNumber === 0 && baseFirstSixMonths > maximumWithNoChildren){
-            printResults(maximumWithNoChildren,maximumWithNoChildren);
-            return;
-        }
-        if (childNumber === 1 && baseFirstSixMonths > maximumWithOneChildren){
-            printResults(maximumWithOneChildren,maximumWithOneChildren);
-            return;
-        }
-
-        if (childNumber > 1 && baseFirstSixMonths > maximumWithTwoOrMoreChildren){
-            printResults(maximumWithTwoOrMoreChildren,maximumWithTwoOrMoreChildren);
-            return;
-        }
-
-        if (childNumber === 0 && baseFirstSixMonths < minimumWithNoChildren){
-            printResults(minimumWithNoChildren,minimumWithNoChildren);
-            return;
-        }
-
-        if (childNumber >= 1 && baseFirstSixMonths < minimumWithOneOrMoreChildren){
-            printResults(minimumWithOneOrMoreChildren,minimumWithOneOrMoreChildren);
-            return;
-        }
+        calc(childNumber,regulatoryBase * 0.7,'result_first_six_months');
+        calc(childNumber,regulatoryBase * 0.5,'result_following_months');
+        $('#result').show();
     });
 
     $('#reset').on('click', function () {
