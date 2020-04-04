@@ -22,6 +22,7 @@ $(function() {
         const noChildrenAndBaseBetweenLimits = childNumber === 0 && (maximumWithNoChildren > baseFirstSixMonths && baseFirstSixMonths > minimumWithNoChildren);
         const oneChildAndBaseBetweenLimits = childNumber === 1 && (maximumWithOneChildren > baseFirstSixMonths && baseFirstSixMonths > minimumWithOneOrMoreChildren);
         const moreThanOneChildAndBaseBetweenLimits = childNumber > 1 && (maximumWithTwoOrMoreChildren > baseFirstSixMonths && baseFirstSixMonths > minimumWithOneOrMoreChildren);
+
         if (noChildrenAndBaseBetweenLimits || oneChildAndBaseBetweenLimits || moreThanOneChildAndBaseBetweenLimits){
             printResults(baseFirstSixMonths,baseNextMonths);
             return;
@@ -38,6 +39,16 @@ $(function() {
 
         if (childNumber > 1 && baseFirstSixMonths > maximumWithTwoOrMoreChildren){
             printResults(maximumWithTwoOrMoreChildren,maximumWithTwoOrMoreChildren);
+            return;
+        }
+
+        if (childNumber === 0 && baseFirstSixMonths < minimumWithNoChildren){
+            printResults(minimumWithNoChildren,minimumWithNoChildren);
+            return;
+        }
+
+        if (childNumber >= 1 && baseFirstSixMonths < minimumWithOneOrMoreChildren){
+            printResults(minimumWithOneOrMoreChildren,minimumWithOneOrMoreChildren);
             return;
         }
     });
