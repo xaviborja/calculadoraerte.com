@@ -1,3 +1,9 @@
+function printResults(resultFirstSixMonths,resultNextMonths){
+    $('#result_first_six_months').html(resultFirstSixMonths.toFixed(2) + ' €');
+    $('#result_following_months').html(resultNextMonths.toFixed(2) + ' €');
+    $('#result').show();
+}
+
 $(function() {
     $('#calculator').on('submit', function (event) {
         event.preventDefault();
@@ -17,29 +23,21 @@ $(function() {
         const oneChildAndBaseBetweenLimits = childNumber === 1 && (maximumWithOneChildren > baseFirstSixMonths && baseFirstSixMonths > minimumWithOneOrMoreChildren);
         const moreThanOneChildAndBaseBetweenLimits = childNumber > 1 && (maximumWithTwoOrMoreChildren > baseFirstSixMonths && baseFirstSixMonths > minimumWithOneOrMoreChildren);
         if (noChildrenAndBaseBetweenLimits || oneChildAndBaseBetweenLimits || moreThanOneChildAndBaseBetweenLimits){
-            $('#result_first_six_months').html(baseFirstSixMonths + ' €');
-            $('#result_following_months').html(baseNextMonths + ' €');
-            $('#result').show();
+            printResults(baseFirstSixMonths,baseNextMonths);
             return;
         }
 
         if (childNumber === 0 && baseFirstSixMonths > maximumWithNoChildren){
-            $('#result_first_six_months').html(maximumWithNoChildren + ' €');
-            $('#result_following_months').html(maximumWithNoChildren + ' €');
-            $('#result').show();
+            printResults(maximumWithNoChildren,maximumWithNoChildren);
             return;
         }
         if (childNumber === 1 && baseFirstSixMonths > maximumWithOneChildren){
-            $('#result_first_six_months').html(maximumWithOneChildren + ' €');
-            $('#result_following_months').html(maximumWithOneChildren + ' €');
-            $('#result').show();
+            printResults(maximumWithOneChildren,maximumWithOneChildren);
             return;
         }
 
         if (childNumber > 1 && baseFirstSixMonths > maximumWithTwoOrMoreChildren){
-            $('#result_first_six_months').html(maximumWithTwoOrMoreChildren + ' €');
-            $('#result_following_months').html(maximumWithTwoOrMoreChildren + ' €');
-            $('#result').show();
+            printResults(maximumWithTwoOrMoreChildren,maximumWithTwoOrMoreChildren);
             return;
         }
     });
