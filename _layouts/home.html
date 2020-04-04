@@ -3,7 +3,6 @@ layout: default
 ---
 
 <div>
-
   {%- if page.title -%}
   <header>
     <h1>{{ page.title }}</h1>
@@ -13,12 +12,12 @@ layout: default
   <section>
     {{ content }}
     <form id="calculator">
-      <div class="form-group">
+      <div class="form-group w-50">
         <label for="regulatory_base">Base reguladora del último mes</label>
         <input type="text" required id="regulatory_base" class="form-control" aria-describedby="regulatory_base" placeholder="Introduza el importe">
         <small id="regulatory_base_info" class="form-text text-muted">El cálculo real se hace con la media de los últimos seis meses.</small>
       </div>
-      <div class="form-group">
+      <div class="form-group w-50">
         <label for="child_number">Número de hijos a cargo</label>
         <select class="form-control" id="child_number">
           <option>0</option>
