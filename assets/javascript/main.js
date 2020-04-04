@@ -13,18 +13,16 @@ $(function() {
         const baseFirstSixMonths = regulatoryBase * 0.7;
         const baseNextMonths = regulatoryBase * 0.5;
 
-        if (childNumber === 0 && (maximumWithNoChildren > baseFirstSixMonths && baseFirstSixMonths > minimumWithNoChildren)){
+        const noChildrenAndBaseBetweenLimits = childNumber === 0 && (maximumWithNoChildren > baseFirstSixMonths && baseFirstSixMonths > minimumWithNoChildren);
+        const oneChildAndBaseBetweenLimits = childNumber === 1 && (maximumWithOneChildren > baseFirstSixMonths && baseFirstSixMonths > minimumWithOneOrMoreChildren);
+        const moreThanOneChildAndBaseBetweenLimits = childNumber > 1 && (maximumWithTwoOrMoreChildren > baseFirstSixMonths && baseFirstSixMonths > minimumWithOneOrMoreChildren);
+        if (noChildrenAndBaseBetweenLimits || oneChildAndBaseBetweenLimits || moreThanOneChildAndBaseBetweenLimits){
             $('#result_first_six_months').html(baseFirstSixMonths + ' €');
             $('#result_following_months').html(baseNextMonths + ' €');
             $('#result').show();
             return;
         }
-        if (childNumber === 1 && (maximumWithOneChildren > baseFirstSixMonths && baseFirstSixMonths > minimumWithOneOrMoreChildren)){
-            $('#result_first_six_months').html(baseFirstSixMonths + ' €');
-            $('#result_following_months').html(baseNextMonths + ' €');
-            $('#result').show();
-            return;
-        }
+
         if (childNumber === 0 && baseFirstSixMonths > maximumWithNoChildren){
             $('#result_first_six_months').html(maximumWithNoChildren + ' €');
             $('#result_following_months').html(maximumWithNoChildren + ' €');
@@ -34,6 +32,13 @@ $(function() {
         if (childNumber === 1 && baseFirstSixMonths > maximumWithOneChildren){
             $('#result_first_six_months').html(maximumWithOneChildren + ' €');
             $('#result_following_months').html(maximumWithOneChildren + ' €');
+            $('#result').show();
+            return;
+        }
+
+        if (childNumber > 1 && baseFirstSixMonths > maximumWithTwoOrMoreChildren){
+            $('#result_first_six_months').html(maximumWithTwoOrMoreChildren + ' €');
+            $('#result_following_months').html(maximumWithTwoOrMoreChildren + ' €');
             $('#result').show();
             return;
         }
