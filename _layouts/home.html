@@ -13,7 +13,11 @@ layout: default
     {{ content }}
     <form id="calculator">
       <div class="form-group w-50">
-        <label for="regulatory_base">Base regulatoria</label>
+        <label for="regulatory_base">Base reguladora
+          <a href="#" data-toggle="modal" data-target="#regulatory_base_modal">
+          (¿Dónde encuentro mi base reguladora?)
+          </a>
+        </label>
         <div class="input-group mb-3">
           <input type="text" required id="regulatory_base" class="form-control" aria-describedby="regulatory_base" placeholder="Importe...">
           <div class="input-group-append">
@@ -51,5 +55,6 @@ layout: default
       </table>
     </div>
   </section>
-
 </div>
+
+{%- include where_is_regulatory_base.html -%}
