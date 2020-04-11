@@ -12,7 +12,28 @@ layout: default
     <section>
         {{ content }}
         <form id="calculator">
-            <div class="justify-content-center form-box">
+            <div class="form-box">
+                <div class="form-group w-75">
+                    <label for="erte_type">Tipo de ERTE</label>
+                        <select class="form-control" id="erte_type">
+                            <option value="total">ERTE por fuerza mayor</option>
+                            <option value="reduction">ERTE de reducción de jornada</option>
+                        </select>
+                </div>
+                <div id="hours_work"  style="display: none">
+                    <div class="form-group w-75">
+                        <label for="hours_worked_before_erte">Horas trabajadas al día antes del ERTE</label>
+                        <div class="input-group mb-3">
+                            <input name="hours_worked_before_erte" type="number" min="1" max="8" id="hours_worked_before_erte" class="form-control" aria-describedby="hours_worked_before_erte" placeholder="Horas trabajadas al día antes del ERTE">
+                        </div>
+                    </div>
+                    <div class="form-group w-75">
+                        <label for="hours_work_after_erte">Horas que trabajarás después del ERTE</label>
+                        <div class="input-group mb-3">
+                            <input name="hours_work_after_erte" type="number" min="1" max="8" id="hours_work_after_erte" class="form-control" aria-describedby="hours_work_after_erte" placeholder="Horas al día que trabajarás después del ERTE">
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group w-75">
                     <label for="regulatory_base">Base reguladora
                         <a href="#" data-toggle="modal" data-target="#regulatory_base_modal">
@@ -20,7 +41,7 @@ layout: default
                         </a>
                     </label>
                     <div class="input-group mb-3">
-                        <input type="text" required id="regulatory_base" class="form-control" aria-describedby="regulatory_base" placeholder="Importe...">
+                        <input type="text" name="regulatory_base" id="regulatory_base" class="form-control" aria-describedby="regulatory_base" placeholder="Importe...">
                         <div class="input-group-append">
                             <span class="input-group-text">€</span>
                             <span class="input-group-text">0,00</span>
